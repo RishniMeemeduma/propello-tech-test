@@ -5,9 +5,9 @@
         <div class="p-6 text-gray-900">
             <form method="POST" action="{{ route('tasks.update', ['task' =>  $task]) }}">
 
-                <input type="hidden" name="_token" autocomplete="off" value="JbXMTGEI0EuV90PVZPeEm8eC7r45wmQxUQVLG5B2">
-
-                <div class="pb-4">
+                <!-- <input type="hidden" name="_token" autocomplete="off" value="JbXMTGEI0EuV90PVZPeEm8eC7r45wmQxUQVLG5B2"> -->
+                @csrf
+                <div class="pb-4">  
                     <x-forms.input-label for="name" :value="__('Name')" />
                     <x-forms.text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$task->name" required autofocus />
                     <x-forms.input-error :messages="$errors->get('name')" class="mt-2" />
