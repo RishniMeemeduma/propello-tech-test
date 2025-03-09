@@ -41,7 +41,7 @@ class TaskController extends Controller
             )
         );
 
-        return redirect()->to(route('tasks.home'));
+        return redirect()->to(route('tasks.home'))->with('success', 'Task created successfully');
     }
 
     public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
@@ -50,7 +50,7 @@ class TaskController extends Controller
 
         $task->update($request->validated());
 
-        return redirect()->to(route('tasks.home'));
+        return redirect()->to(route('tasks.home'))->with('success', 'Task updated successfully');
     }
 
     public function destroy(Task $task): RedirectResponse
@@ -59,7 +59,7 @@ class TaskController extends Controller
 
         $task->delete();
 
-        return redirect()->to(route('tasks.home'));
+        return redirect()->to(route('tasks.home'))->with('success', 'Task deleted successfully');
     }
 
     public function complete(Task $task): RedirectResponse
@@ -69,6 +69,14 @@ class TaskController extends Controller
         $task->complete = !$task->complete;
         $task->save();
 
-        return redirect()->to(route('tasks.home'));
+        return redirect()->to(route('tasks.home'))->with('success', 'Task updated successfully');
+    }
+
+    public function assignTags(Task $task): View
+    {
+        $tags = auth()->user()?->tags ?? [];
+        $selectedTags = $task?->tags ?? [];
+
+        return view('tasks.assign-tags', compact('task', 'tags', 'selectedTags'));
     }
 }

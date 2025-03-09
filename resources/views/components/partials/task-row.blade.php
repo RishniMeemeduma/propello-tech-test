@@ -12,6 +12,9 @@
         <x-elements.link-button class="mr-2 my-1 w-[110px]" href="{{ route('tasks.edit', ['task' => $task]) }}">
             Edit
         </x-elements.link-button>
+        <x-elements.link-button class="mr-2 my-1 w-[110px]" href="{{ route('tasks.assignTags', ['task' => $task]) }}">
+            Assign Tags
+        </x-elements.link-button>
         <x-elements.link-button-danger class="mr-2 my-1 w-[110px]" href="{{ route('tasks.destroy', ['task' => $task]) }}">
             Delete
         </x-elements.link-button-danger>
